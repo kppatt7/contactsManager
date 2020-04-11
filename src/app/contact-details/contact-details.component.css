@@ -1,0 +1,27 @@
+.firstchild-contacts-table {
+    width: 25px; 
+    padding: 5px !important;
+}
+
+.inactiveBadge {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    background-color: #dc0909;
+    color: #ffffff;
+}
+
+.activeBadge {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 3px 6px;
+    background-color: #046f04;
+    color: #ffffff;
+}
+
+.confirm-text {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+}

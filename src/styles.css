@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+.p-lr-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.m-r-5 {
+    margin-right: 5px;
+}
+
+.m-t-10 {
+    margin-top: 10px;
+}
+
+.icon-widget {
+    display: flex;
+}
+
+.primary-button {
+    padding: 7px;
+    border-radius: 5px;
+    background-color: #249dae;
+    color: #ffffff;
+    cursor: pointer;
+    border: none !important;
+}
+
+.primary-button i {
+    font-size: 24px;
+}
+
+.ui-chkbox .ui-chkbox-box {
+    width: 15px !important;
+    height: 15px !important;
+}
+
+.ui-chkbox .ui-chkbox-box .ui-chkbox-icon {
+    font-size: 13px !important;
+}
+
+.ui-table .ui-table-thead > tr > th {
+    text-align: left !important;
+}
+
+.form-field {
+    display: grid;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.form-input {
+    font-size: 14px;
+    padding: 5px;
+}

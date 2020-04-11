@@ -1,3 +1,115 @@
-<p>
-  contact-details works!
-</p>
+<div class="p-lr-15">
+  <!-- Top Button Widget -->
+  <div class="icon-widget">
+    <div class="primary-button m-r-5" pTooltip="Add New Contact" (click)="manageContact('Add')">
+      <i class="pi pi-plus"></i>
+    </div>
+    <div class="primary-button m-r-5" pTooltip="Edit Selected Contact" (click)="manageContact('Edit')">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="primary-button m-r-5" pTooltip="Delete Contact(s)" (click)="manageContact('Delete')">
+      <i class="pi pi-minus"></i>
+    </div>
+    <div class="primary-button m-r-5" pTooltip="Activate Contact(s)" (click)="manageContact('Activate')">
+      <i class="pi pi-check"></i>
+    </div>
+    <div class="primary-button m-r-5" pTooltip="Deactivate Contact(s)" (click)="manageContact('Deactivate')">
+      <i class="pi pi-times"></i>
+    </div>
+  </div>
+  <!-- Table Design -->
+  <p-table styleClass="m-t-10" [value]="contactList">
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="firstchild-contacts-table">
+          <p-checkbox [(ngModel)]="selectAllCheckbox" binary="true" (onChange)="onRowSelect('all',undefined)">
+          </p-checkbox>
+        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone No</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-contact>
+      <tr>
+        <td class="firstchild-contacts-table">
+          <p-checkbox [(ngModel)]="contact.selected" binary="true" (onChange)="onRowSelect('single',contact)">
+          </p-checkbox>
+        </td>
+        <td>{{contact.firstName}}</td>
+        <td>{{contact.lastName}}</td>
+        <td>{{contact.emailId}}</td>
+        <td>{{contact.phoneNumber}}</td>
+        <td>
+          <span [ngClass]="contact.status == 'Active'?'activeBadge':'inactiveBadge'">{{contact.status}}</span>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- Add/Edit Contact dialog -->
+  <p-dialog [(visible)]="contactAddEditDialog" [modal]="true" [responsive]="true" [maximizable]="false"
+    [baseZIndex]="10000" [style]="{maxWidth: '750px', minWidth: '500px'}">
+    <p-header>{{contactAddEditDialogHeader}} Contact</p-header>
+    <div>
+      <div class="form-field">
+        <label class="form-label" for="firstName">First Name</label>
+        <input class="form-input" type="text" [(ngModel)]="contactDetail.firstName">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="lastName">Last Name</label>
+        <input class="form-input" type="text" [(ngModel)]="contactDetail.lastName">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="emailId">Email Id</label>
+        <input class="form-input" type="email" [(ngModel)]="contactDetail.emailId">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="phoneNumber">Phone Number</label>
+        <input class="form-input" type="number" [(ngModel)]="contactDetail.phoneNumber">
+      </div>
+      <div class="form-field" *ngIf="!(contactAddEditDialogHeader === 'Edit')">
+        <label class="form-label" for="status">Status</label>
+        <p-toggleButton [(ngModel)]="contactStatus" onLabel="Active" offLabel="Inactive"
+          title="Click to change contact status"></p-toggleButton>
+      </div>
+    </div>
+    <p-footer>
+      <button class="primary-button" (click)="saveContactDetails(contactAddEditDialogHeader)"
+        [disabled]="contactDetail.firstName == ''">Yes</button>
+      <button class="primary-button" (click)="contactAddEditDialog=false;">Cancel</button>
+    </p-footer>
+  </p-dialog>
+  <!-- Contact feature dialog -->
+  <p-dialog [(visible)]="contactFeatureDialog" [modal]="true" [responsive]="true" [maximizable]="false"
+    [baseZIndex]="10000" [style]="{maxWidth: '750px', minWidth: '500px'}">
+    <p-header>{{contactFeatureDialogHeader}} Contacts</p-header>
+    <div class="confirm-text">Are you sure you want to {{contactFeatureDialogHeader}} below contact(s)?</div>
+    <div>
+      <p-table [value]="selectedContacts">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-deleteContact>
+          <tr>
+            <td>{{deleteContact.firstName}}</td>
+            <td>{{deleteContact.lastName}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <p-footer>
+      <button class="primary-button" (click)="saveFeatureInfo(contactFeatureDialogHeader)">Yes</button>
+      <button class="primary-button" (click)="contactFeatureDialog=false;">Cancel</button>
+    </p-footer>
+  </p-dialog>
+  <!-- Alert Message -->
+  <div>
+    <p-toast key="successAlert" position="top-center" [style]="{width: '330px'}"></p-toast>
+    <p-toast key="warningAlert" position="top-center" [style]="{width: '330px'}"></p-toast>
+  </div>
+</div>
