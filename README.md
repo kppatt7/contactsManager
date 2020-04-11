@@ -1,3 +1,18 @@
+This is updated by Kamalesh.
+
+Project is written with back end http server & environment set up. Wherever required, codes are written to fetch/post data to server, but they are commented as there are no back end server/database running.
+
+So data is getting loaded from stub and all functionalities can be tested, but data will vanish if you reload as data will be persisted for single time life cycle of app. No back end server called to save data, so test all features in local UI.
+
+Steps:
+1. Take git clone
+2. Do npm install (to load node_modules) - it will take sometime to install all packages
+3. Once above is successful, run it by using command- ng serve in localhost:4200
+
+4. If you would like to deploy in Tomcat server, do ng build --prod and put dist folder in root directory
+(Make sure to enable back end server URL and uncomment necessary codes so that on production it will run with proper back end interaction, else test stub hard coded data will be loaded).
+
+
 # ContactsManager
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
